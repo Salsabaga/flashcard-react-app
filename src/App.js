@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import examples from "./examples";
+import Header from "./components/Header";
+import FlashCard from "./components/FlashCard";
+import CreateCard from "./components/CreateCard";
+import Practice from "./Practice";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [words, setWords] = useState(examples);
+
+	const [randomIndexNumber, setRandomIndexNumber] = useState(0);
+
+	const addWords = (inputWord) => {
+		setWords((prevValue) => {
+			return [...prevValue, inputWord];
+		});
+	};
+
+	const deleteNote = (id) => {
+		setWords((prevValue) => {
+			return prevValue.filter((words, index) => {
+				return index !== id;
+			});
+		});
+	};
+
+	const indexGenerator = () => {
+		const randomIndexNumber = Math.floor(Math.random() * words.length);
+		setRandomIndexNumber(randomIndexNumber);
+	};
+	return (
+		<Router>
+			<Header />
+			<div id="app-container">
+				<div className="flashCards-container">
+					{words.map((word, index) => {
+						return (
+							<FlashCard
+								key={index}
+								id={index}
+								english={word.english}
+								japanese={word.japanese}
+								delItem={deleteNote}
+							/>
+						);
+					})}
+				</div>
+				<CreateCard addItm={addWords} />
+			</div>
+		</Router>
+	);
 }
 
 export default App;
