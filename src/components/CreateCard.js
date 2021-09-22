@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-const CreateCard = ({ addItm }) => {
+const CreateCard = ({ addItm, hiragana }) => {
 	const [inputWord, setInputWord] = useState({
 		english: "",
 		japanese: "",
 	});
+
+	const [clickedWord, setClickedWord] = useState("");
+
 	const handleWordChange = (event) => {
 		const newInput = event.target.value;
 		const nameInput = event.target.name;
@@ -17,21 +20,36 @@ const CreateCard = ({ addItm }) => {
 		});
 	};
 
+	const addHira = (e) => {
+		const clickableInput = e.target.value;
+		setClickedWord((prevValue) => {
+			return prevValue + clickableInput;
+		});
+		setInputWord((prevValue) => {
+			return {
+				...prevValue,
+				japanese: clickedWord,
+			};
+		});
+	};
+
 	return (
 		<div className="inputContainer">
 			<form>
 				<div className="inputArea">
 					<input
+						className="input-style"
 						name="english"
-						placeholder="type here"
+						placeholder="Type here"
 						type="text"
 						onChange={handleWordChange}
 						value={inputWord.english}
 					/>
 					<textarea
+						className="input-style"
 						name="japanese"
-						placeholder="your translated word here"
-						rows="3"
+						placeholder="Your translated word here"
+						rows="2"
 						onChange={handleWordChange}
 						value={inputWord.japanese}
 					></textarea>
@@ -42,6 +60,7 @@ const CreateCard = ({ addItm }) => {
 								english: "",
 								japanese: "",
 							});
+							setClickedWord("");
 							event.preventDefault();
 						}}
 					>
@@ -49,6 +68,13 @@ const CreateCard = ({ addItm }) => {
 					</button>
 				</div>
 			</form>
+			{hiragana.map((x) => {
+				return (
+					<button value={x} onClick={addHira}>
+						{x}
+					</button>
+				);
+			})}
 		</div>
 	);
 };

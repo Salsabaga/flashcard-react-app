@@ -6,40 +6,70 @@ body {
 #app-container {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 }
 
 .flashCards-container {
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
+	min-width: 70vw;
 }
 
 .flashCards {
+	background-color: violet;
 	position: relative;
-	margin: 1em 2em;
 	text-align: center;
 	padding: 2em 1.5em;
+	margin: 0 2em;
 	height: 100px;
 	max-height: 100px;
 	user-select: none;
-	border-radius: 10px;
+	border-radius: 5px;
+	transform-style: preserve-3d;
+	transition: 300ms;
+	perspective: 1000px;
+	transform: rotateY(var(--rotate-card-y, 0));
+	cursor: pointer;
+}
+
+.flashCards:hover {
+	box-shadow: 0 12px 15px rgba(33, 33, 33, 0.8);
+}
+
+.btn-area {
+	text-align: center;
+	margin: 1em 2em 2em;
+	transition: opacity 350ms ease-in-out;
+	opacity: 0;
+}
+
+.btn-area:hover {
+	opacity: 1;
+}
+
+.flashCards.flip {
+	--rotate-card-y: 180deg;
+}
+
+.flashCards .front,
+.flashCards .back {
+	backface-visibility: hidden;
+}
+
+.flashCards .back {
+	transform: rotateY(180deg);
 }
 
 .flashCards > .cardText {
 	font-size: 2em;
 }
 
-#delete-btn {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
 .inputArea {
-	background-color: blueviolet;
 	display: flex;
 	flex-direction: column;
-	padding: 40px 0;
+	padding: 4em 1em;
+	box-sizing: border-box;
+	border: 10px solid blueviolet;
+	box-shadow: 0px 0px 0px 5px white;
 }
 
 .inputArea > textarea,
@@ -47,4 +77,8 @@ body {
 	display: block;
 	box-sizing: border-box;
 	font-size: 1.5em;
+}
+
+.input-style {
+	text-align: center;
 }

@@ -1,35 +1,33 @@
 import { useState } from "react";
 
 const FlashCard = ({ id, english, japanese, delItem }) => {
-	const [onMemory, setOnMemory] = useState(true);
+	const [onFlip, setOnFlip] = useState(false);
 
 	const changeMode = () => {
-		setOnMemory((prevValue) => {
+		setOnFlip((prevValue) => {
 			return !prevValue;
 		});
 	};
 
 	return (
-		<div
-			className="flashCards"
-			onClick={changeMode}
-			style={{ backgroundColor: "#719FB0" }}
-		>
-			{onMemory ? (
-				<div className="cardText" style={{ fontWeight: 700 }}>
-					{english}
-				</div>
-			) : (
-				<div className="cardText">{japanese}</div>
-			)}
-			<button
-				onClick={() => {
-					delItem(id);
-				}}
-				id="delete-btn"
+		<div>
+			<div
+				className={`flashCards ${onFlip ? "flip" : ""}`}
+				onClick={changeMode}
 			>
-				DELETE
-			</button>
+				<div className="front">{english}</div>
+				<div className="back">{japanese}</div>
+			</div>
+			<div className="btn-area">
+				<button
+					onClick={() => {
+						delItem(id);
+					}}
+					id="delete-btn"
+				>
+					Delete
+				</button>
+			</div>
 		</div>
 	);
 };
