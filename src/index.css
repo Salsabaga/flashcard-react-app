@@ -1,27 +1,39 @@
+:root {
+	--primary-color: hsl(278, 22%, 14%);
+	--flash-cards: hsl(0, 0%, 93%);
+	--container: hsl(217, 10%, 25%);
+	--input: hsl(220, 31%, 56%);
+}
+
 body {
 	margin: 0;
 	font-family: "Noto Sans", sans-serif;
+	background-color: var(--primary-color);
 }
 
 #app-container {
 	display: flex;
-	flex-direction: row;
 }
 
 .flashCards-container {
+	background-color: var(--container);
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
 	min-width: 70vw;
+	max-height: 80vh;
+	margin-left: 1.5em;
+	justify-content: center;
+	overflow: auto;
 }
 
 .flashCards {
-	background-color: violet;
+	background-color: var(--flash-cards);
 	position: relative;
 	text-align: center;
 	padding: 2em 1.5em;
-	margin: 0 2em;
-	height: 100px;
-	max-height: 100px;
+	margin: 1em;
+	height: 75px;
+	max-height: 75px;
 	user-select: none;
 	border-radius: 5px;
 	transform-style: preserve-3d;
@@ -32,13 +44,12 @@ body {
 }
 
 .flashCards:hover {
-	box-shadow: 0 12px 15px rgba(33, 33, 33, 0.8);
+	box-shadow: 0 12px 15px hsla(278, 22%, 14%, 0.877);
 }
 
 .btn-area {
 	text-align: center;
-	margin: 1em 2em 2em;
-	transition: opacity 350ms ease-in-out;
+	transition: opacity 250ms ease-in-out;
 	opacity: 0;
 }
 
@@ -53,32 +64,41 @@ body {
 .flashCards .front,
 .flashCards .back {
 	backface-visibility: hidden;
+	position: absolute;
+	top: 50%;
+}
+
+.flashCards .front {
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .flashCards .back {
-	transform: rotateY(180deg);
+	transform: rotateY(180deg) translate(-50%, -50%);
+	right: 50%;
 }
 
 .flashCards > .cardText {
 	font-size: 2em;
 }
 
-.inputArea {
-	display: flex;
-	flex-direction: column;
-	padding: 4em 1em;
-	box-sizing: border-box;
-	border: 10px solid blueviolet;
-	box-shadow: 0px 0px 0px 5px white;
+.input-container {
+	margin: 0 1.5em;
 }
 
-.inputArea > textarea,
-.inputArea > input {
-	display: block;
-	box-sizing: border-box;
-	font-size: 1.5em;
+.input-area {
+	text-align: center;
+	background-color: var(--input);
+	padding-top: 20px;
 }
 
 .input-style {
+	box-sizing: border-box;
+	width: 85%;
 	text-align: center;
+}
+
+.btn-web {
+	display: block;
+	margin: 0 auto;
 }

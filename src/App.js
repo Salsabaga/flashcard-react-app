@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import examples from "./examples";
-import hiragana from "./hiragana";
 import Header from "./components/Header";
 import FlashCard from "./components/FlashCard";
 import CreateCard from "./components/CreateCard";
-import HiraganaInput from "./components/HiraganaInput";
 
 import Practice from "./Practice";
 
@@ -49,9 +47,8 @@ function App() {
 						);
 					})}
 				</div>
-				<CreateCard addItm={addWords} hiragana={hiragana} />
+				<CreateCard key={0} addItm={addWords} />
 			</div>
-			<HiraganaInput hira={hiragana} />
 		</Router>
 	);
 }

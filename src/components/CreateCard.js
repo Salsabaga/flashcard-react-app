@@ -1,12 +1,16 @@
 import { useState } from "react";
+import hiragana from "../hiragana";
+import Fab from "@mui/material/Fab";
+import Zoom from "@mui/material/Zoom";
+import AddIcon from "@mui/icons-material/Add";
 
-const CreateCard = ({ addItm, hiragana }) => {
+const CreateCard = ({ addItm }) => {
 	const [inputWord, setInputWord] = useState({
 		english: "",
 		japanese: "",
 	});
 
-	const [clickedWord, setClickedWord] = useState("");
+	const [keyboardChange, setKeyBoardChange] = useState(false);
 
 	const handleWordChange = (event) => {
 		const newInput = event.target.value;
@@ -22,21 +26,23 @@ const CreateCard = ({ addItm, hiragana }) => {
 
 	const addHira = (e) => {
 		const clickableInput = e.target.value;
-		setClickedWord((prevValue) => {
-			return prevValue + clickableInput;
-		});
+
 		setInputWord((prevValue) => {
 			return {
 				...prevValue,
-				japanese: clickedWord,
+				japanese: inputWord.japanese + clickableInput,
 			};
 		});
 	};
 
+	const enableKeyboard = () => {
+		setKeyBoardChange((prevValue) => !prevValue);
+	};
+
 	return (
-		<div className="inputContainer">
-			<form>
-				<div className="inputArea">
+		<div className="input-container">
+			<div className="input-area">
+				<form>
 					<input
 						className="input-style"
 						name="english"
@@ -53,28 +59,40 @@ const CreateCard = ({ addItm, hiragana }) => {
 						onChange={handleWordChange}
 						value={inputWord.japanese}
 					></textarea>
-					<button
-						onClick={(event) => {
-							addItm(inputWord);
-							setInputWord({
-								english: "",
-								japanese: "",
-							});
-							setClickedWord("");
-							event.preventDefault();
-						}}
-					>
-						Add
+					<Zoom in={true}>
+						<Fab
+							className="btn-web"
+							onClick={(event) => {
+								addItm(inputWord);
+								setInputWord({
+									english: "",
+									japanese: "",
+								});
+								event.preventDefault();
+							}}
+						>
+							<AddIcon />
+						</Fab>
+					</Zoom>
+				</form>
+				<div>
+					<div>No Keyboard? No Problem, Click Here!</div>
+					<button className="btn-web" onClick={enableKeyboard}>
+						Enable
 					</button>
+					{keyboardChange && (
+						<div>
+							{hiragana.map((x) => {
+								return (
+									<button value={x} onClick={addHira} lang="jap">
+										{x}
+									</button>
+								);
+							})}
+						</div>
+					)}
 				</div>
-			</form>
-			{hiragana.map((x) => {
-				return (
-					<button value={x} onClick={addHira}>
-						{x}
-					</button>
-				);
-			})}
+			</div>
 		</div>
 	);
 };

@@ -1,4 +1,16 @@
 import { useState } from "react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { Button } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+	palette: {
+		danger: {
+			main: "hsl(14, 67%,29%)",
+			contrastText: "#fff",
+		},
+	},
+});
 
 const FlashCard = ({ id, english, japanese, delItem }) => {
 	const [onFlip, setOnFlip] = useState(false);
@@ -19,14 +31,18 @@ const FlashCard = ({ id, english, japanese, delItem }) => {
 				<div className="back">{japanese}</div>
 			</div>
 			<div className="btn-area">
-				<button
-					onClick={() => {
-						delItem(id);
-					}}
-					id="delete-btn"
-				>
-					Delete
-				</button>
+				<ThemeProvider theme={theme}>
+					<Button
+						variant="contained"
+						color="danger"
+						onClick={() => {
+							delItem(id);
+						}}
+						id="delete-btn"
+					>
+						<HighlightOffIcon />
+					</Button>
+				</ThemeProvider>
 			</div>
 		</div>
 	);
