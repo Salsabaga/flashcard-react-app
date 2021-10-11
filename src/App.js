@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import validate from "./validateEntry";
 import examples from "./examples";
 import Header from "./components/Header";
 import FlashCard from "./components/FlashCard";
 import CreateCard from "./components/CreateCard";
 
-import Practice from "./Practice";
-
 function App() {
 	const [words, setWords] = useState(examples);
-
-	const [randomIndexNumber, setRandomIndexNumber] = useState(0);
 
 	const addWords = (inputWord) => {
 		setWords((prevValue) => {
@@ -26,12 +22,8 @@ function App() {
 		});
 	};
 
-	const indexGenerator = () => {
-		const randomIndexNumber = Math.floor(Math.random() * words.length);
-		setRandomIndexNumber(randomIndexNumber);
-	};
 	return (
-		<Router>
+		<div id="main-wrapper">
 			<Header />
 			<div id="app-container">
 				<div className="flashCards-container">
@@ -47,9 +39,9 @@ function App() {
 						);
 					})}
 				</div>
-				<CreateCard key={0} addItm={addWords} />
+				<CreateCard key={0} addItm={addWords} validate={validate} />
 			</div>
-		</Router>
+		</div>
 	);
 }
 

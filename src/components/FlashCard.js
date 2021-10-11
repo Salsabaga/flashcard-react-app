@@ -1,13 +1,11 @@
 import { useState } from "react";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { Button } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
 	palette: {
 		danger: {
-			main: "hsl(14, 67%,29%)",
-			contrastText: "#fff",
+			main: "hsl(0, 0%,100%)",
 		},
 	},
 });
@@ -32,16 +30,14 @@ const FlashCard = ({ id, english, japanese, delItem }) => {
 			</div>
 			<div className="btn-area">
 				<ThemeProvider theme={theme}>
-					<Button
+					<DeleteForeverIcon
 						variant="contained"
 						color="danger"
 						onClick={() => {
 							delItem(id);
 						}}
 						id="delete-btn"
-					>
-						<HighlightOffIcon />
-					</Button>
+					/>
 				</ThemeProvider>
 			</div>
 		</div>

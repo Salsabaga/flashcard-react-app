@@ -1,29 +1,52 @@
 :root {
-	--primary-color: hsl(278, 22%, 14%);
+	--primary-color: hsl(205, 100%, 17%);
 	--flash-cards: hsl(0, 0%, 93%);
-	--container: hsl(217, 10%, 25%);
-	--input: hsl(220, 31%, 56%);
+	--input: hsl(231, 21%, 30%);
 }
 
 body {
 	margin: 0;
 	font-family: "Noto Sans", sans-serif;
 	background-color: var(--primary-color);
+	/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+#main-wrapper {
+	position: relative;
+}
+
+#main-wrapper::before {
+	content: " ";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.3;
+	background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+	z-index: -1;
 }
 
 #app-container {
 	display: flex;
+	margin-top: 20px;
 }
 
 .flashCards-container {
-	background-color: var(--container);
+	background-color: var(--primary-color);
+	background-image: url("Flashcard\ Container\ Design.svg");
+	background-size: contain;
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
 	min-width: 70vw;
+	height: 80vh;
 	max-height: 80vh;
 	margin-left: 1.5em;
 	justify-content: center;
 	overflow: auto;
+	border: 1px white solid;
+	border-radius: 10px;
 }
 
 .flashCards {
@@ -49,12 +72,10 @@ body {
 
 .btn-area {
 	text-align: center;
-	transition: opacity 250ms ease-in-out;
-	opacity: 0;
 }
 
-.btn-area:hover {
-	opacity: 1;
+#delete-btn {
+	cursor: pointer;
 }
 
 .flashCards.flip {
@@ -82,23 +103,85 @@ body {
 	font-size: 2em;
 }
 
-.input-container {
-	margin: 0 1.5em;
-}
-
 .input-area {
 	text-align: center;
-	background-color: var(--input);
-	padding-top: 20px;
+	padding: 20px 0;
+	margin: 0 1.75em;
+	width: 22.5vw;
+	max-width: 22.5vw;
+	border: 1px hsl(0, 0%, 100%) solid;
+	border-radius: 5px;
 }
 
 .input-style {
 	box-sizing: border-box;
-	width: 85%;
+	width: 90%;
 	text-align: center;
+	resize: none;
+	border: none;
+	border-bottom: 1px hsl(0, 0%, 100%) solid;
+	border-radius: 2.5px;
+	transition: 400ms ease-in-out;
+	margin-bottom: 0.5em;
+	padding: 10px 0;
+	color: white;
+}
+
+.input-area,
+.input-style {
+	background-color: var(--primary-color);
+}
+
+.input-style:focus {
+	outline: none;
+	border-bottom: 1px hsl(175, 71%, 37%) solid;
+}
+
+.err {
+	border-bottom: 1px hsl(0, 100%, 50%) solid;
 }
 
 .btn-web {
 	display: block;
 	margin: 0 auto;
+}
+
+.error-msg {
+	font-size: 1em;
+	margin-bottom: 1.5em;
+	color: white;
+}
+
+#keybd-label {
+	margin: 10px 0;
+	color: hsl(0, 0%, 100%);
+}
+
+#hira-btns {
+	margin-top: 1em;
+}
+
+.hiragana {
+	background-color: var(--primary-color);
+	border: none;
+	border-bottom: 1px hsl(197, 100%, 45%) solid;
+	margin: 0.5em;
+	color: white;
+	cursor: pointer;
+}
+
+.flashCards-container::-webkit-scrollbar {
+	width: 1.5em;
+}
+
+.flashCards-container::-webkit-scrollbar-track {
+	border: 1px hsl(0, 0%, 100%) solid;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #007ea7;
+	border: 5px solid transparent;
+	border-radius: 10px;
+	background-clip: content-box;
 }
