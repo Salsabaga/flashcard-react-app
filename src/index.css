@@ -170,6 +170,10 @@ body {
 	cursor: pointer;
 }
 
+.hiragana:hover {
+	color: hsl(54, 71%, 48%);
+}
+
 .flashCards-container::-webkit-scrollbar {
 	width: 1.5em;
 }
