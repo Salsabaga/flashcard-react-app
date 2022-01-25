@@ -39,12 +39,10 @@ body {
 	background-size: contain;
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
-	min-width: 70vw;
-	height: 80vh;
-	max-height: 80vh;
 	margin-left: 1.5em;
 	justify-content: center;
 	overflow: auto;
+	width: 100%;
 	border: 1px white solid;
 	border-radius: 10px;
 }
@@ -107,8 +105,7 @@ body {
 	text-align: center;
 	padding: 20px 0;
 	margin: 0 1.75em;
-	width: 22.5vw;
-	max-width: 22.5vw;
+
 	border: 1px hsl(0, 0%, 100%) solid;
 	border-radius: 5px;
 }
@@ -188,4 +185,24 @@ body {
 	border: 5px solid transparent;
 	border-radius: 10px;
 	background-clip: content-box;
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+	#app-container {
+		flex-direction: column-reverse;
+	}
+
+	.flashCards-container {
+		grid-template-columns: 1fr;
+		margin-left: 0;
+		margin: 20px 0;
+	}
+
+	.flashCards {
+		height: 50px;
+		width: 50%;
+		margin: 1em auto;
+	}
 }
