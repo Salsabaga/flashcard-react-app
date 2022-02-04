@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/flashcard-react-app/static/css/main.6b03f45d.chunk.css",
+    "main.js": "/flashcard-react-app/static/js/main.ae49bf97.chunk.js",
+    "main.js.map": "/flashcard-react-app/static/js/main.ae49bf97.chunk.js.map",
+    "runtime-main.js": "/flashcard-react-app/static/js/runtime-main.a450b569.js",
+    "runtime-main.js.map": "/flashcard-react-app/static/js/runtime-main.a450b569.js.map",
+    "static/js/2.9b9917bb.chunk.js": "/flashcard-react-app/static/js/2.9b9917bb.chunk.js",
+    "static/js/2.9b9917bb.chunk.js.map": "/flashcard-react-app/static/js/2.9b9917bb.chunk.js.map",
+    "index.html": "/flashcard-react-app/index.html",
+    "static/css/main.6b03f45d.chunk.css.map": "/flashcard-react-app/static/css/main.6b03f45d.chunk.css.map",
+    "static/js/2.9b9917bb.chunk.js.LICENSE.txt": "/flashcard-react-app/static/js/2.9b9917bb.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/flashcard-react-app/static/media/Flashcard Container Design.9b1612e7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a450b569.js",
+    "static/js/2.9b9917bb.chunk.js",
+    "static/css/main.6b03f45d.chunk.css",
+    "static/js/main.ae49bf97.chunk.js"
+  ]
+}
